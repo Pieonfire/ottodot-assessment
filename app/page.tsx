@@ -19,6 +19,23 @@ export default function Home() {
     // TODO: Implement problem generation logic
     // This should call your API route to generate a new problem
     // and save it to the database
+    setIsLoading(true)
+    setFeedback('')
+    setIsCorrect(null)
+    setUserAnswer('')
+    try {
+      const res = await fetch('../api/math-problem', { method: 'POST' })
+      if (!res.ok) throw new Error('Failed to generate problem')
+      const data = await res.json()
+      setProblem({ problem_text: data.problem_text, final_answer: data.final_answer })
+      setSessionId(data.session_id)
+    } catch (err) {
+      setFeedback('Error generating problem. Please try again.')
+      setProblem(null)
+      setSessionId(null)
+      console.log(err)
+    }
+    setIsLoading(false)
   }
 
   const submitAnswer = async (e: React.FormEvent) => {
@@ -26,6 +43,29 @@ export default function Home() {
     // TODO: Implement answer submission logic
     // This should call your API route to check the answer,
     // save the submission, and generate feedback
+    e.preventDefault()
+    if (!sessionId) return
+    setIsLoading(true)
+    setFeedback('')
+    setIsCorrect(null)
+    try {
+      const res = await fetch('/api/math-problem/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          session_id: sessionId,
+          user_answer: Number(userAnswer),
+        }),
+      })
+      if (!res.ok) throw new Error('Failed to submit answer')
+      const data = await res.json()
+      setFeedback(data.feedback_text)
+      setIsCorrect(data.is_correct)
+    } catch (err) {
+      setFeedback('Error submitting answer. Please try again.')
+      setIsCorrect(null)
+    }
+    setIsLoading(false)
   }
 
   return (
