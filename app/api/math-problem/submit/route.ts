@@ -4,7 +4,9 @@ import { GEMINI_API_URL } from '../../../../lib/constants'
 
 // Helper: Call Gemini to generate feedback
 async function generateFeedback(problem: string, correct: number, user: number) {
-  const prompt = `A student answered this math problem: "${problem}". The correct answer is ${correct}. The student's answer was ${user}. Give helpful feedback.`;
+  const prompt = `You are a Primary 5 Singaporean math teacher. The problem is: "${problem}". The correct answer is ${correct}. The student's answer: ${user}. 
+                  If correct, reply in a cheerful and encouraging manner. 
+                  If wrong, reply with a short, encouraging tip (max 2 to 5 sentences) to help the student understand their mistake and give the answer at the end.`;
   const aiRes = await fetch(GEMINI_API_URL, {
     method: 'POST',
     body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),

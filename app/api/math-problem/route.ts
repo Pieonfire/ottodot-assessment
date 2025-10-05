@@ -4,7 +4,8 @@ import { GEMINI_API_URL } from '../../../lib/constants'
 
 // Helper: Call Gemini to generate a math problem
 async function generateMathProblem() {
-  const prompt = `Generate a Primary 5 Singapore math word problem as JSON: {"problem_text": "...", "final_answer": ...}`;
+  const prompt = `Generate a Primary 5 Singapore math word problem involving whole numbers. 
+                  Reply ONLY in this JSON format: {"problem_text": "...", "final_answer": ...}`;
   const aiRes = await fetch(GEMINI_API_URL, {
     method: 'POST',
     body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
