@@ -28,7 +28,6 @@ html, body, #root {
 body {
   min-height: 100vh;
   font-family: "Archivo", sans-serif;
-  /* top layer = gradient (overlay), bottom layer = image */
   background-color: rgb(var(--background-start-rgb));
   background-size: cover;
   background-position: center;

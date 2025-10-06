@@ -130,13 +130,16 @@ When submitting your assessment, provide:
 2. **Live Demo URL**: Your Vercel deployment
 3. **Supabase Credentials**: Add these to your README for testing:
    ```
-   SUPABASE_URL: [Your Supabase Project URL]
-   SUPABASE_ANON_KEY: [Your Supabase Anon Key]
+   SUPABASE_URL: https://kxogeffufyooempxuhkn.supabase.co
+   SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4b2dlZmZ1Znlvb2VtcHh1aGtuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk2NTE2NzIsImV4cCI6MjA3NTIyNzY3Mn0.NmOAnnqv00dpCa7zaFVb5M1A9INJBrpoqt38bsmGta8
    ```
 
 ## Implementation Notes
 
-*Please fill in this section with any important notes about your implementation, design decisions, challenges faced, or features you're particularly proud of.*
+Challenges Faced
+1. Because I only saw the assessment on Sunday and had a busy schedule, I had to make some compromises on the design, as I didn’t have enough time to fully learn Tailwind CSS. However, I did my best with the UI, completed all the required implementations, and learned a lot about Tailwind CSS, Vercel, and the Google Gemini API.
+
+2. I regret not doing any of the optional features. However I will still take this as a initiative to add them myself after the assessment submission due date. This challenge certainly challenged my skills and I hope to improve more from here.
 
 ### My Implementation:
 
