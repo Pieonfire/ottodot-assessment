@@ -27,6 +27,7 @@ export default function Home() {
   const [lastAction, setLastAction] = useState<'generate' | 'submit' | null>(null)
   const [lastPayload, setLastPayload] = useState<any>(null)
   const shouldShowDialog = problem && (isCorrect === null || isCorrect === false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
 
   // Handle generate button click
   const handleGenerateClick = () => {
@@ -37,12 +38,15 @@ export default function Home() {
     }
   }
 
-  // Handle dialog confirm/cancel
-  const handleDialogConfirm = () => {
+  // Handle dialog confirm click
+  const handleDialogConfirm = async () => {
     setShowDialog(false)
-    generateProblem()
+    setIsTransitioning(true)  // disable submit while fetching
+    await generateProblem()
+    setIsTransitioning(false)
   }
 
+  // Handle dialog cancel click
   const handleDialogCancel = () => {
     setShowDialog(false)
   }
@@ -217,7 +221,7 @@ export default function Home() {
                 </div>
                 <button
                   type="submit"
-                  disabled={!userAnswer || isSubmitting}
+                  disabled={!userAnswer || isSubmitting || isGenerating || isTransitioning}
                   className="rounded-full px-6 py-3 font-semibold text-white bg-green-500 hover:bg-green-600 disabled:bg-gray-300 transition w-full"
                 >
                   {isSubmitting ? (
