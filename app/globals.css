@@ -3,7 +3,7 @@
 @import 'tailwindcss/utilities';
 @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Comic+Relief:wght@400;700&display=swap');
 
-html, body, #__next {
+html, body, #root {
   height: 100%;
 }
 

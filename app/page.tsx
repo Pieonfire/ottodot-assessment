@@ -87,7 +87,7 @@ export default function Home() {
 
       setProblem({ problem_text: data.problem_text, final_answer: data.final_answer })
       setSessionId(data.session_id)
-    } catch (err: any) {
+    } catch (err: any) { // Handle all generate question errors
       if (err.message === 'timeout') {
         setFeedback('The server is taking too long to respond. Please try again.')
         setErrorType('timeout')
@@ -139,7 +139,7 @@ export default function Home() {
 
       setFeedback(data.feedback_text)
       setIsCorrect(data.is_correct)
-    } catch (err: any) {
+    } catch (err: any) { // Handle all submit errors here
       if (err.message === 'timeout') {
         setFeedback('The server is taking too long to respond. Please try again.')
         setErrorType('timeout')
