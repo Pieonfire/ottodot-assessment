@@ -1,11 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Comic+Relief:wght@400;700&display=swap');
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+html, body, #__next {
+  height: 100%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,12 +15,26 @@
   }
 }
 
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Background image + gradient overlay, covers whole viewport */
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  min-height: 100vh;
+  font-family: "Archivo", sans-serif;
+  /* top layer = gradient (overlay), bottom layer = image */
+  background-image:
+  linear-gradient(to bottom, rgba(255,255,255,0), rgb(var(--background-end-rgb))),
+  url('/assets/background.jpg');
+  background-color: rgb(var(--background-start-rgb));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* keeps image stable while scrolling */
 }

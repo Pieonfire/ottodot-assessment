@@ -16,6 +16,12 @@ async function generateMathProblem() {
   const text = aiData.candidates?.[0]?.content?.parts?.[0]?.text || '';
   const jsonMatch = text.match(/\{[\s\S]*\}/);
 
+  if (aiData.error?.code === 429) {
+    throw new Error('Quota exceeded for Gemini API. Please wait and try again later.');
+  }
+
+  console.log('AI response:', aiData); // Debug AI response
+
   if (!jsonMatch) throw new Error('AI did not return JSON');
 
   return JSON.parse(jsonMatch[0]);
